@@ -1,2 +1,4 @@
 # Dependency directories
 node_modules
+# Environment variables to be loaded
+.env

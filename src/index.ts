@@ -2,11 +2,16 @@ const { google } = require("googleapis");
 
 const scopes = "https://www.googleapis.com/auth/analytics.readonly";
 const key = require("../auth.json");
+const dotenv = require('dotenv');
+dotenv.config();
+
+const clientEmail = process.env.CLIENT_EMAIL;
+const privateKey = process.env.PRIVATE_KEY;
 
 const jwt = new google.auth.JWT(
-  key.client_email,
+  clientEmail,
   null,
-  key.private_key,
+  privateKey,
   scopes
 );
 const view_id = "200220825";

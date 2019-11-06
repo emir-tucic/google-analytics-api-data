@@ -1,7 +1,11 @@
 var google = require("googleapis").google;
 var scopes = "https://www.googleapis.com/auth/analytics.readonly";
 var key = require("../auth.json");
-var jwt = new google.auth.JWT(key.client_email, null, key.private_key, scopes);
+var dotenv = require('dotenv');
+dotenv.config();
+var clientEmail = process.env.CLIENT_EMAIL;
+var privateKey = process.env.PRIVATE_KEY;
+var jwt = new google.auth.JWT(clientEmail, null, privateKey, scopes);
 var view_id = "200220825";
 jwt.authorize(function (err, response) {
     if (response) {
