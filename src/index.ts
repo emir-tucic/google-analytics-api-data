@@ -6,6 +6,7 @@ dotenv.config();
 
 const clientEmail = process.env.CLIENT_EMAIL;
 const privateKey = process.env.PRIVATE_KEY;
+const viewID = process.env.VIEW_ID;
 
 const jwt = new google.auth.JWT(
   clientEmail,
@@ -13,14 +14,14 @@ const jwt = new google.auth.JWT(
   privateKey,
   scopes
 );
-const view_id = "200220825";
+// const view_id = "200220825";
 
 jwt.authorize((err, response) => {
   if (response) {
     google.analytics("v3").data.ga.get(
       {
         auth: jwt,
-        ids: "ga:" + view_id,
+        ids: "ga:" + viewID,
         "start-date": "30daysAgo",
         "end-date": "today",
         metrics: "ga:pageviews",
@@ -39,4 +40,3 @@ jwt.authorize((err, response) => {
     );
   }
 });
-

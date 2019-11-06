@@ -4,13 +4,14 @@ var dotenv = require('dotenv');
 dotenv.config();
 var clientEmail = process.env.CLIENT_EMAIL;
 var privateKey = process.env.PRIVATE_KEY;
+var viewID = process.env.VIEW_ID;
 var jwt = new google.auth.JWT(clientEmail, null, privateKey, scopes);
-var view_id = "200220825";
+// const view_id = "200220825";
 jwt.authorize(function (err, response) {
     if (response) {
         google.analytics("v3").data.ga.get({
             auth: jwt,
-            ids: "ga:" + view_id,
+            ids: "ga:" + viewID,
             "start-date": "30daysAgo",
             "end-date": "today",
             metrics: "ga:pageviews",
