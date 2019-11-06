@@ -1,0 +1,39 @@
+const { google } = require("googleapis");
+
+const scopes = "https://www.googleapis.com/auth/analytics.readonly";
+const key = require("../auth.json");
+
+const jwt = new google.auth.JWT(
+  key.client_email,
+  null,
+  key.private_key,
+  scopes
+);
+const view_id = "200220825";
+
+jwt.authorize((err, response) => {
+  if (response) {
+    google.analytics("v3").data.ga.get(
+      {
+        auth: jwt,
+        ids: "ga:" + view_id,
+        "start-date": "30daysAgo",
+        "end-date": "today",
+        metrics: "ga:pageviews",
+        dimensions: "ga:pagePath",
+        sort: "-ga:pageviews",
+        filters:
+          "ga:pagePath=~^/([\\w\\d-._~]+)/([\\w\\d-._~]+)-([\\w\\d-._~]+){12}$",
+        "start-index": "1",
+        "max-results": "10"
+      },
+      (err, result) => {
+        if (result) {
+          console.log(result.data.rows);
+        }
+      }
+    );
+  }
+});
+
+
