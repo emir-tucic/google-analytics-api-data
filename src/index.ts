@@ -14,7 +14,6 @@ const jwt = new google.auth.JWT(
   privateKey,
   scopes
 );
-// const view_id = "200220825";
 
 jwt.authorize((err, response) => {
   if (response) {
