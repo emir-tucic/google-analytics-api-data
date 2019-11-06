@@ -1,7 +1,6 @@
 const { google } = require("googleapis");
 
 const scopes = "https://www.googleapis.com/auth/analytics.readonly";
-const key = require("../auth.json");
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -40,5 +39,4 @@ jwt.authorize((err, response) => {
     );
   }
 });
-
 

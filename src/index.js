@@ -1,6 +1,5 @@
 var google = require("googleapis").google;
 var scopes = "https://www.googleapis.com/auth/analytics.readonly";
-var key = require("../auth.json");
 var dotenv = require('dotenv');
 dotenv.config();
 var clientEmail = process.env.CLIENT_EMAIL;
