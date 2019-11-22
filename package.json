@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^12.12.3",
-    "dotenv": "^8.2.0",
+    "aws-sdk": "^2.516.0",
     "googleapis": "^44.0.0"
   }
 }
